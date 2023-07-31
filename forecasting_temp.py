@@ -3,7 +3,7 @@ import os
 import pickle
 import matplotlib.pyplot as plt
 import pandas as pd
-# from neuralprophet import NeuralProphet
+from neuralprophet import NeuralProphet
 from sklearn.linear_model import LinearRegression
 import xgboost as xgb
 
@@ -83,15 +83,15 @@ def forecasting_temperature(data: pd.DataFrame, method: str):
     # Neural Network Method
     if method == 'NeuralProphet':
 
-        # neural_model = NeuralProphet()
-        # neural_model.fit(df=train, freq='D', epochs=500)
+        neural_model = NeuralProphet()
+        neural_model.fit(df=train, freq='D', epochs=100)
 
-        # save_model = os.path.join('model', 'saved_model.pkl')
+        save_model = os.path.join('model', 'neural_network_model.pkl')
 
-        # with open(save_model, "wb") as f:
-        #     pickle.dump(neural_model, f)
+        with open(save_model, "wb") as f:
+            pickle.dump(neural_model, f)
 
-        trained_model_path = os.path.join('model', 'saved_model.pkl')
+        trained_model_path = os.path.join('model', 'neural_network_model.pkl')
 
         with open(trained_model_path, "rb") as f:
             trained_model = pickle.load(f)
