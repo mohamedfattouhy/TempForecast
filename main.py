@@ -17,8 +17,8 @@ data = data.groupby('date', as_index=False).mean()
 data.set_index(['date'], inplace=True)
 
 # Temperature Forecasting
-forecasting_temperature(data=data, method='xgboost')
-forecasting_temperature(data=data, method='regression')
+# forecasting_temperature(data=data, method='xgboost')
+# forecasting_temperature(data=data, method='regression')
 
 data2 = df.copy()
 data2 = data2[['date', 'temp_celsius']]
@@ -26,4 +26,4 @@ data2 = data2.groupby('date', as_index=False).mean()
 data2.columns = ['ds', 'y']
 
 # Temperature Forecasting
-forecasting_temperature(data=data, method='NeuralProphet')
+forecasting_temperature(data=data2, method='NeuralProphet')
