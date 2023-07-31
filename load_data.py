@@ -9,7 +9,7 @@ plt.style.use('bmh')
 
 # Function that load data in gzip format
 # and convert them in a single dataframe
-def gz_to_df(path_list):
+def gz_to_df(path_list, station_number):
 
     df_clean = pd.DataFrame()
 
@@ -21,7 +21,7 @@ def gz_to_df(path_list):
                          compression='gzip', header=0)
 
         # Choose a station number
-        df = df[df['numer_sta'] == 7005]
+        df = df[df['numer_sta'] == station_number]
 
         # Keep only certain features
         df = df[['numer_sta', 'date', 'pmer', 'cod_tend', 'dd',
@@ -80,7 +80,7 @@ list_2021_2023 = list_2021_2022_1_9 + list_2021_2022_10_12 + list_2023_1_7
 list_2021_2023 = sorted(list_2021_2023)
 
 # Load the data
-# df_weather = gz_to_df(list_2021_2023)
+# df_weather = gz_to_df(list_2021_2023, station_number=7005)
 # print(df_weather.head())
 
 save_to_csv = os.path.join('data', 'temp_data.csv')
@@ -94,12 +94,16 @@ df['date'] = pd.to_datetime(df['date'])
 df = df[['date', 'temp_celsius']]
 df['date'] = df['date'].dt.date
 data = df.groupby('date', as_index=False).mean()
+# data = data[data.date <= pd.to_datetime('2023-01-18')]
 data.set_index(['date'], inplace=True)
-# print(data.head())
+# print(data.tail())
 
 # Plot the temperature evolution
 data[['temp_celsius']].plot(color='#E74C3C', xlabel='Date',
                             ylabel='Temperature (Celsius)',
                             title='Temperature evolution',
                             legend=False)
+plt.axvline(x=pd.to_datetime('2023-01-18'), color='black', ls='--')
+# plt.xlim(right=pd.to_datetime('2023-07-23'))
+
 plt.show()
