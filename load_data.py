@@ -65,6 +65,7 @@ def gz_to_df(path_list, station_number):
 
 # url to load data from
 url_prefix = 'https://donneespubliques.meteofrance.fr/donnees_libres/Txt/Synop/Archive/'
+# For more information: https://donneespubliques.meteofrance.fr/?fond=produit&id_produit=90&id_rubrique=32
 
 # Create lists of date to load data
 list_2021_2022_1_9 = [url_prefix + f'synop.202{annee}0{mois}.csv.gz'
