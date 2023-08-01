@@ -1,3 +1,5 @@
+"""This file contains the code to train the various forecasting models"""
+
 # Manage Environment
 import os
 import pickle
@@ -11,9 +13,8 @@ import xgboost as xgb
 plt.style.use('bmh')
 
 
-# Make temperature forecasts with different modelsMake
-# temperature forecasts with different models
 def forecasting_temperature(data: pd.DataFrame, method: str):
+    """Make temperature forecasts with different models"""
 
     train_size = int(0.8*data.shape[0])
     test_size = data.shape[0] - train_size

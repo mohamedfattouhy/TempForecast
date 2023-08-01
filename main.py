@@ -1,8 +1,11 @@
+"""This file reads the data and performs forecasts
+according to the chosen model"""
+
 # Manage environment
 import os
 import pandas as pd
 from sklearn.preprocessing import StandardScaler
-from forecasting_temp import forecasting_temperature
+from model_training.forecasting_temp import forecasting_temperature
 
 
 # Create a StandardScaler object
@@ -35,5 +38,5 @@ data2 = data2[['date', 'temp_celsius']]
 data2 = data2.groupby('date', as_index=False).mean()
 data2.columns = ['ds', 'y']
 
-# # Temperature Forecasting
+# Temperature Forecasting
 forecasting_temperature(data=data2, method='NeuralProphet')

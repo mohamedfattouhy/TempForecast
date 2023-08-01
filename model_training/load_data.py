@@ -1,3 +1,5 @@
+"""This file contains the code needed to load the data"""
+
 # Manage Environment
 import os
 import pandas as pd
@@ -7,9 +9,9 @@ import matplotlib.pyplot as plt
 plt.style.use('bmh')
 
 
-# Function that load data in gzip format
-# and convert them in a single dataframe
-def gz_to_df(path_list, station_number):
+def gz_to_df(path_list: list, station_number: int) -> pd.DataFrame:
+    """Load data in gzip format from the url list provided
+    and convert them in a single dataframe"""
 
     df_clean = pd.DataFrame()
 
